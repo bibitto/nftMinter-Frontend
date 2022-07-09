@@ -1,1 +1,1 @@
-NFT Mint Web App
+NFT MINT WEB APP
