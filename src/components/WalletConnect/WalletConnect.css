@@ -1,0 +1,8 @@
+.connect-wallet-button {
+    color: rgb(255, 255, 255);
+    background-color: #50bf9c;
+    border-radius: 100vh;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}

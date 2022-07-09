@@ -1,0 +1,11 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 18%;
+    padding-top: 10px;
+}
+
+.header-title {
+    margin-right: 50%;
+}
