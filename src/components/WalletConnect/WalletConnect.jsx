@@ -34,9 +34,20 @@ export const WalletConnect = () => {
             const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
             console.log('Connected', accounts[0]);
             setCurrentAccount(accounts[0]);
+            // ネットワークの確認
+            const georliChainId = '0x5'; // Georli
+            const chainId = await ethereum.request({ method: 'eth_chainId' });
+            if (chainId !== georliChainId) {
+                alert('You are not connected to the Goerli Test Network!');
+            }
         } catch (error) {
             console.log(error);
         }
+    };
+
+    const disconnectWallet = () => {
+        setCurrentAccount('');
+        console.log('disconnect!');
     };
 
     const renderNotConnectedContainer = () => (
@@ -51,7 +62,13 @@ export const WalletConnect = () => {
 
     return (
         <div>
-            {currentAccount === '' ? renderNotConnectedContainer() : <p>If you choose image, you can mint your NFT</p>}
+            {currentAccount === '' ? (
+                renderNotConnectedContainer()
+            ) : (
+                <button onClick={disconnectWallet} className="connected-wallet-button">
+                    Disconnect Wallet
+                </button>
+            )}
         </div>
     );
 };

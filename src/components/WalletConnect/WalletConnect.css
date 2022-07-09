@@ -6,3 +6,12 @@
     margin-right: 10px;
     cursor: pointer;
 }
+
+.connected-wallet-button {
+    color: rgb(17, 16, 16);
+    background-color: #94b9ad;
+    border-radius: 100vh;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
