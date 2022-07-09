@@ -34,16 +34,19 @@ const NftUploader = () => {
                 const provider = new ethers.providers.Web3Provider(ethereum);
                 const signer = provider.getSigner();
                 const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, nftMinter.abi, signer);
+                alert('NFTをMintします。しばらくお待ちください。');
                 console.log('Going to pop wallet noe to pay gas...');
                 let nftTxn = await connectedContract.mintNFT('sample', ipfs);
                 console.log('Mining...please wait.');
                 await nftTxn.wait();
                 console.log(`Mined, see transaction: https://goerli.etherscan.io/tx/${nftTxn.hash}`);
+                alert(`NFTのMintが完了しました。https://goerli.etherscan.io/tx/${nftTxn.hash}`);
             } else {
                 console.log("Ethereum object doesn't exist!");
             }
         } catch (error) {
             console.log(error);
+            alert(`NFTのMintに失敗しました。n/ エラー内容：${error}`);
         }
     };
 
