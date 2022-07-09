@@ -1,7 +1,7 @@
 import { Web3Storage } from 'web3.storage';
 import nftMinter from '../../utils/nftMinter.json';
-import { ethers } from 'ethers';
 import { Button } from '@mui/material';
+import { ethers } from 'ethers';
 import React from 'react';
 import ImageLogo from './image.svg';
 import './NftUploader.css';
