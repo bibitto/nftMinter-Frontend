@@ -3,47 +3,10 @@ import nftMinter from '../../utils/nftMinter.json';
 import { ethers } from 'ethers';
 import { Button } from '@mui/material';
 import React from 'react';
-import { useState, useEffect } from 'react';
 import ImageLogo from './image.svg';
 import './NftUploader.css';
 
 const NftUploader = () => {
-    const [currentAccount, setCurrentAccount] = useState('');
-    console.log('currentAccount:', currentAccount);
-    const isWalletConnected = async () => {
-        const { ethereum } = window;
-        if (!ethereum) {
-            console.log('Make sure you have Metamask!');
-            return;
-        } else {
-            console.log('We have the ethreum object', ethereum);
-        }
-
-        const accounts = await ethereum.request({ method: 'eth_accounts' });
-        if (accounts.length !== 0) {
-            const account = accounts[0];
-            console.log('Found an authorized account:', account);
-            setCurrentAccount(account);
-        } else {
-            console.log('No authorized account found');
-        }
-    };
-
-    const connectWallet = async () => {
-        try {
-            const { ethereum } = window;
-            if (!ethereum) {
-                alert('Get Metamask!');
-                return;
-            }
-            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-            console.log('Connected', accounts[0]);
-            setCurrentAccount(accounts[0]);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     const imageToNFT = async (e) => {
         const client = new Web3Storage({
             token: `${process.env.REACT_APP_API_KEY}`,
@@ -84,19 +47,8 @@ const NftUploader = () => {
         }
     };
 
-    const renderNotConnectedContainer = () => (
-        <button onClick={connectWallet} className="cta-button connect-wallet-button">
-            Connect to Wallet
-        </button>
-    );
-
-    useEffect(() => {
-        isWalletConnected();
-    }, []);
-
     return (
         <div className="outerBox">
-            {currentAccount === '' ? renderNotConnectedContainer() : <p>If you choose image, you can mint your NFT</p>}
             <div className="title">
                 <h2>NFTアップローダー</h2>
                 <p>JpegかPngの画像ファイル</p>
